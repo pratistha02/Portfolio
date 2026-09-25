@@ -95,7 +95,7 @@
     </div>
   </section>
 
-  <section aria-label="Product screens" style="padding: 0 clamp(20px,5vw,80px) clamp(56px,8vh,110px);">
+  <section aria-label="Product screens" style="padding: 0 clamp(24px,5vw,80px) clamp(56px,8vh,110px);">
     <div style="width: min(1160px, 100%); margin: 0 auto; display: flex; justify-content: center;">
       <figure style="margin: 0; display: flex; flex-direction: column; gap: 12px; width: min(720px, 100%);">
         <div style="position: relative; padding: 8px; border-radius: 20px; background: #fffdf9; border: 1px solid rgba(34,28,24,0.12);">
@@ -107,9 +107,9 @@
   </section>
 
   <section id="problem" data-screen-label="Key problems" style="scroll-margin-top: 80px; padding: clamp(96px,13vh,150px) clamp(24px,5vw,80px);">
-    <div style="width: min(1060px, 100%); margin: 0 auto;">
+    <div style="width: min(1160px, 100%); margin: 0 auto;">
       <div style="font: 500 12px/1 'Instrument Sans', system-ui, sans-serif; letter-spacing: 1.8px; text-transform: uppercase; color: #6f6862;">The problem</div>
-      <h2 style="font: 400 clamp(30px,4vw,58px)/1.14 'Forum', Georgia, serif; margin: clamp(18px,2.4vw,28px) 0 0; text-wrap: balance; font-size: 36px">3 key problems</h2>
+      <h2 style="font: 400 clamp(30px,4vw,58px)/1.14 'Forum', Georgia, serif; width: min(1160px, 100%); margin: clamp(18px,2.4vw,28px) auto 0; text-wrap: balance; font-size: 36px">3 key problems</h2>
       <ol style="list-style: none; margin: clamp(28px,3.4vw,40px) 0 0; padding: 0; display: flex; flex-direction: column;">
         <sc-for list="{{ keyProblems }}" as="p" hint-placeholder-count="3">
           <li style="font: 400 17.5px/1.55 'Instrument Sans', system-ui, sans-serif; color: #6f6862; padding: 22px 0; border-bottom: 1px solid rgba(34,28,24,0.1); display: flex; gap: 20px;">
@@ -122,7 +122,7 @@
   </section>
 
   <section style="padding: clamp(96px,13vh,150px) clamp(24px,5vw,80px);">
-    <div style="width: min(1060px, 100%); margin: 0 auto;">
+    <div style="width: min(1160px, 100%); margin: 0 auto;">
       <div style="font: 500 12px/1 'Instrument Sans', system-ui, sans-serif; letter-spacing: 1.8px; text-transform: uppercase; color: #6f6862;">The approach</div>
       <h2 style="font: 400 clamp(26px,3.4vw,46px)/1.24 'Forum', Georgia, serif; color: #221c18; margin: clamp(20px,2.6vw,32px) 0 0; text-wrap: pretty; font-size: 36px">3 key design moves</h2>
       <ol style="list-style: none; margin: clamp(28px,3.4vw,40px) 0 0; padding: 0; display: flex; flex-direction: column;">
@@ -139,7 +139,7 @@
   <section data-screen-label="What was broken" style="padding: clamp(96px,13vh,150px) clamp(24px,5vw,80px); background: rgba(255,253,249,0.5); border-top: 1px solid rgba(34,28,24,0.07); border-bottom: 1px solid rgba(34,28,24,0.07);">
     <div style="width: min(1160px, 100%); margin: 0 auto;">
       <div style="font: 500 12px/1 'Instrument Sans', system-ui, sans-serif; letter-spacing: 1.8px; text-transform: uppercase; color: #6f6862;">The problem</div>
-      <h2 style="font: 400 clamp(30px,4vw,58px)/1.14 'Forum', Georgia, serif; margin: clamp(18px,2.4vw,28px) 0 0; text-wrap: balance; font-size: 36px">What was broken</h2>
+      <h2 style="font: 400 clamp(30px,4vw,58px)/1.14 'Forum', Georgia, serif; width: min(1160px, 100%); margin: clamp(18px,2.4vw,28px) auto 0; text-wrap: balance; font-size: 36px">What was broken</h2>
 
       <p style="font: 400 19px/1.5 'Instrument Sans', system-ui, sans-serif; color: #6f6862; margin: clamp(28px,3.4vw,44px) 0 0; text-wrap: pretty; font-size: 20px">The plugin worked. Administrators could import users, schedule cleanup rules and read audit logs. The problem was how those tasks arrived: as single dense screens where meaning was carried almost entirely by background colour, and where the setting that deactivates real accounts sat at the same visual weight as the notification preference beside it.</p>
 
@@ -176,7 +176,7 @@
   </section>
 
   <sc-for list="{{ decisions }}" as="d" hint-placeholder-count="6">
-  <section aria-label="Decision" style="padding: clamp(48px,7vh,96px) clamp(20px,5vw,80px); background: {{ d.bg }}; border-top: {{ d.border }}; border-bottom: {{ d.border }};">
+  <section aria-label="Decision" style="padding: clamp(48px,7vh,96px) clamp(24px,5vw,80px); background: {{ d.bg }}; border-top: {{ d.border }}; border-bottom: {{ d.border }};">
     <div style="width: min(1160px, 100%); margin: 0 auto;">
       <div style="display: flex; align-items: baseline; gap: 16px;">
         <span style="font: 400 clamp(28px,3vw,42px)/1 'Forum', Georgia, serif; color: #6f6862;">{{ d.num }}</span>
@@ -258,8 +258,8 @@
     </div>
   </section>
 
-  <section style="padding: clamp(64px,9vh,110px) clamp(20px,5vw,80px);">
-    <div style="width: min(880px, 100%); margin: 0 auto;">
+  <section style="padding: clamp(64px,9vh,110px) clamp(24px,5vw,80px);">
+    <div style="width: min(880px, 100%); margin: 0 0 0 max(0px, calc((100% - 1160px) / 2));">
       <div style="font: 500 12px/1 'Instrument Sans', system-ui, sans-serif; letter-spacing: 1.8px; text-transform: uppercase; color: #6f6862;">What this is</div>
       <p style="font: 400 clamp(18px,1.6vw,23px)/1.62 'Instrument Sans', system-ui, sans-serif; color: #6f6862; margin: 16px 0 0; text-wrap: pretty; font-size: 20px">An independent redesign exploration grounded in heuristic evaluation, comparative analysis, simulated administrator tasks and established interaction patterns. It has not been tested with Jira administrators. There is no analytics, no A/B test and no task-completion data behind anything on this page. Every outcome stated is stated as an intention.</p>
     </div>
@@ -281,7 +281,7 @@
     </div>
   </section>
 
-  <footer style="padding: clamp(72px,11vh,150px) clamp(20px,5vw,80px) clamp(56px,8vh,110px);">
+  <footer style="padding: clamp(72px,11vh,150px) clamp(24px,5vw,80px) clamp(56px,8vh,110px);">
     <div style="width: min(1160px, 100%); margin: 0 auto; display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: clamp(24px,4vw,60px);">
       <div>
         <div style="font: 500 12px/1 'Instrument Sans', system-ui, sans-serif; letter-spacing: 1.8px; text-transform: uppercase; color: #6f6862;">Next</div>
