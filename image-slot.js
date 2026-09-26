@@ -556,7 +556,9 @@
       const w = (g.iw * k / g.fw * 100) + '%';
       const h = (g.ih * k / g.fh * 100) + '%';
       const l = (50 + this._view.x) + '%';
-      const t = (50 + this._view.y) + '%';
+      const pinTop = /^top/.test(this.getAttribute('position') || '') &&
+        this._view.x === 0 && this._view.y === 0 && this._view.s === 1;
+      const t = (pinTop ? (g.ih * k / g.fh * 100) / 2 : 50 + this._view.y) + '%';
       this._img.style.width = w; this._img.style.height = h;
       this._img.style.left = l; this._img.style.top = t;
       this._img.style.objectFit = '';
