@@ -354,7 +354,8 @@ class Component extends DCLogic {
     const m = /^jp-(d\d+)-(after|before)-\d+$/.exec(id);
     if (m) {
       const re = new RegExp('^jp-' + m[1] + '-' + m[2] + '-\\d+$');
-      ids = Array.from(document.querySelectorAll('image-slot[data-filled]'))
+      ids = Array.from(document.querySelectorAll('image-slot'))
+        .filter(s => s.hasAttribute('data-filled') || (s.getAttribute('src') || '').indexOf('data:') === 0)
         .map(s => s.id).filter(x => re.test(x))
         .sort((a, b) => parseInt(a.split('-').pop(), 10) - parseInt(b.split('-').pop(), 10));
     } else if (id.indexOf('jp-hero-') === 0) {
