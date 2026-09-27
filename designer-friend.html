@@ -8,6 +8,62 @@
 <link rel="apple-touch-icon" href="./favicon.png">
 <style id="mobile-fit">@media (max-width: 767px){[data-mfit]{width:auto!important;max-width:100%!important;min-width:0!important;height:auto!important}[data-m1col]{grid-template-columns:1fr!important}[data-m1col]>*{grid-column:auto!important;min-width:0!important}[data-anno-mhide]{display:none!important}[data-anno]{left:var(--al)!important;top:var(--at)!important;width:var(--aw)!important;height:var(--ah)!important;right:auto!important;bottom:auto!important}}</style>
 <style id="anno-pin">[data-anno-pin]{left:var(--al)!important;top:var(--at)!important;width:var(--aw)!important;height:var(--ah)!important;right:auto!important;bottom:auto!important}</style>
+
+<style id="cs-mobile">
+@media (max-width: 767px){
+  header nav[aria-label="Sections"]{display:none!important}
+  header.cs-open nav[aria-label="Sections"]{display:flex!important;flex-direction:column!important;align-items:stretch!important;gap:0!important;position:absolute;top:calc(100% + 8px);right:14px;min-width:190px;padding:8px!important;border-radius:22px;background:rgba(250,248,246,0.9);backdrop-filter:blur(26px) saturate(1.1);-webkit-backdrop-filter:blur(26px) saturate(1.1);border:1px solid rgba(255,255,255,0.5);box-shadow:inset 1px 1px 0 -0.5px rgba(255,255,255,0.6),0 14px 34px rgba(90,60,60,0.12)}
+  header.cs-open nav[aria-label="Sections"] a{font:500 16px/1 'Instrument Sans',system-ui,sans-serif!important;color:#221c18!important;padding:14px 16px!important;border-radius:14px;transition:color .2s ease,background .2s ease}
+  header nav[aria-label="Sections"] a.cs-hot{color:#A70909!important;background:rgba(167,9,9,0.06)}
+  .cs-burger{display:inline-block!important}
+  header{position:sticky}
+  #overview h1{font-size:36px!important;line-height:1.1!important}
+  #overview h1 + p{font-size:17px!important;line-height:1.5!important}
+  section h2{font-size:26px!important;line-height:1.2!important}
+  section h3{font-size:22px!important;line-height:1.25!important}
+  div:has(> h3) > span{font-size:22px!important}
+  section p{font-size:16px!important;line-height:1.6!important}
+  section li{font-size:15px!important;line-height:1.5!important}
+  section blockquote{font-size:20px!important;line-height:1.35!important}
+  figcaption{font-size:14px!important;line-height:1.5!important}
+  body section{padding-top:32px!important;padding-bottom:32px!important}
+  button[aria-label="Close"]{position:fixed!important;top:16px!important;right:16px!important;width:40px!important;height:40px!important;display:flex!important;align-items:center;justify-content:center;padding:0!important;z-index:210!important}
+  section h2 p{font-size:inherit!important;line-height:inherit!important;margin:0!important}
+  section li > span:not([style*="border-radius"]), section li strong{font-size:inherit!important}
+}
+.cs-burger{display:none;position:relative;width:42px;height:42px;border-radius:50%;padding:0;cursor:pointer;justify-self:end;background:rgba(250,248,246,0.34);backdrop-filter:blur(26px) saturate(1.1);-webkit-backdrop-filter:blur(26px) saturate(1.1);border:1px solid rgba(255,255,255,0.4);box-shadow:inset 1px 1px 0 -0.5px rgba(255,255,255,0.6),0 10px 30px rgba(90,60,60,0.06)}
+.cs-burger i{position:absolute;left:12px;width:18px;height:1.8px;border-radius:2px;background:#221c18;transition:transform .3s ease,top .3s ease,opacity .2s ease}
+.cs-burger i:nth-child(1){top:14px}.cs-burger i:nth-child(2){top:20px}.cs-burger i:nth-child(3){top:26px}
+header.cs-open .cs-burger i:nth-child(1){top:20px;transform:rotate(45deg)}
+header.cs-open .cs-burger i:nth-child(2){opacity:0}
+header.cs-open .cs-burger i:nth-child(3){top:20px;transform:rotate(-45deg)}
+</style>
+<script id="cs-burger-js">
+(function(){
+  function init(){
+    var hd=document.querySelector('header'); var nav=hd&&hd.querySelector('nav[aria-label="Sections"]');
+    if(!hd||!nav||hd.querySelector('.cs-burger')) return;
+    var b=document.createElement('button'); b.type='button'; b.className='cs-burger'; b.setAttribute('aria-label','Open menu'); b.innerHTML='<i></i><i></i><i></i>';
+    hd.appendChild(b);
+    function set(o){ hd.classList.toggle('cs-open',o); b.setAttribute('aria-label',o?'Close menu':'Open menu'); }
+    b.addEventListener('click',function(e){ e.stopPropagation(); set(!hd.classList.contains('cs-open')); });
+    nav.addEventListener('click',function(e){
+      var a=e.target.closest('a'); if(!a||!hd.classList.contains('cs-open')) return;
+      e.preventDefault(); a.classList.add('cs-hot'); var href=a.getAttribute('href');
+      setTimeout(function(){ a.classList.remove('cs-hot'); set(false); var t=href&&href.charAt(0)==='#'&&document.querySelector(href); if(t) t.scrollIntoView({behavior:'smooth'}); else if(href) location.href=href; },260);
+    });
+    document.addEventListener('click',function(e){ if(hd.classList.contains('cs-open') && !hd.contains(e.target)) set(false); });
+  }
+  window.__csBurger=1; setInterval(function(){ var hd=document.querySelector('header'); if(hd && !hd.querySelector('.cs-burger')) init(); },400);
+})();
+</script>
+
+<style id="df-mobile">
+@media (max-width: 767px){
+  .df-ia-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-left:-24px!important;margin-right:-24px!important;padding:0 24px 8px}
+  .df-ia-scroll svg{width:920px!important;max-width:none!important}
+}
+</style>
 <script src="./support.js"></script>
 </head>
 <body>
@@ -202,7 +258,7 @@
 
       <div style="margin: clamp(44px,6vw,72px) 0 0; padding-top: clamp(28px,3vw,40px); border-top: 1px solid rgba(34,28,24,0.12);">
         <div style="font: 500 12px/1 'Instrument Sans', system-ui, sans-serif; letter-spacing: 1.8px; text-transform: uppercase; color: #6f6862;">Information architecture</div>
-        <div style="margin: clamp(28px,3.4vw,40px) 0 0;">
+        <div class="df-ia-scroll" style="margin: clamp(28px,3.4vw,40px) 0 0;">
           <svg viewBox="0 0 1300 900" width="1300" height="900" style="width: 100%; max-width: 1300px; height: auto; display: block;" xmlns="http://www.w3.org/2000/svg">
             <g fill="none" stroke="rgba(34,28,24,0.32)" stroke-width="1.3" stroke-dasharray="3,4">
               <path d="M220,118 H260 V128 H300"></path>
@@ -557,7 +613,7 @@
         </div>
         <div>
           <div style="font: 500 12px/1 'Instrument Sans', system-ui, sans-serif; letter-spacing: 1.6px; text-transform: uppercase; color: #6f6862;">Color</div>
-          <div data-m1col style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 18px 0 0;">
+          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 18px 0 0;">
             <sc-for list="{{ colors }}" as="c" hint-placeholder-count="6">
               <div>
                 <div style="height: 60px; border-radius: 10px; background: {{ c.hex }}; border: 1px solid rgba(34,28,24,0.15);"></div>
@@ -821,7 +877,7 @@ class Component extends DCLogic {
   function srcOf(id){var v=FULL[id]; if(v&&v.charAt(0)==='@') v=FULL[v.slice(1)]; if(v) return v; var el=document.getElementById(id); return el?(el.getAttribute('src')||''):'';}
   var FIT='max-width: min(1300px, 90vw); max-height: 86vh; width: auto; height: auto; border-radius: 8px; box-shadow: 0 30px 80px rgba(0,0,0,0.5);';
   var TALL='width: min(1300px, 90vw); height: auto; max-height: none; border-radius: 8px; box-shadow: 0 30px 80px rgba(0,0,0,0.5); margin: auto 0; flex: none;';
-  function show(){ img.onload=function(){ var tall=img.naturalHeight/img.naturalWidth*Math.min(1300,innerWidth*0.9)>innerHeight*0.86; img.setAttribute('style',tall?TALL:FIT); ov.style.alignItems=tall?'flex-start':'center'; ov.style.overflowY=tall?'auto':'hidden'; ov.scrollTop=0; }; img.src=srcOf(ids[pos]); }
+  function show(){ img.onload=function(){ var tall=img.naturalHeight/img.naturalWidth*Math.min(1300,innerWidth*0.9)>innerHeight*0.86; img.setAttribute('style',tall?TALL:FIT); ov.style.alignItems=tall?'flex-start':'center'; ov.style.overflowY=tall?'auto':'hidden'; ov.style.paddingTop=(tall&&innerWidth<768)?'72px':''; ov.scrollTop=0; }; img.src=srcOf(ids[pos]); }
   function close(){ if(ov){ov.remove();ov=null;document.documentElement.style.overflow='';} }
   function open(id,group){
     ids=group; pos=Math.max(0,group.indexOf(id));
