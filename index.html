@@ -178,20 +178,21 @@ class Component extends DCLogic {
       ptr.rx = cx; ptr.ry = cy;
       if (!this.state.moved) this.setState({ moved: true });
     };
-    this._isTouch = !!(window.matchMedia && window.matchMedia('(hover: none), (pointer: coarse)').matches);
-    this._touch = e => { if (e.touches[0]) { this._fingerDown = true; move(e.touches[0].clientX, e.touches[0].clientY); } };
-    this._touchEnd = () => { this._fingerDown = false; ptr.rx = ptr.px = -3000; ptr.ry = ptr.py = -3000; };
-    this._move = e => { if (e.pointerType === 'touch' || (this._isTouch && e.pointerType !== 'mouse')) return; move(e.clientX, e.clientY); };
+    this._move = e => move(e.clientX, e.clientY);
+    this._touch = e => { if (e.touches[0]) move(e.touches[0].clientX, e.touches[0].clientY); };
+    this._isTouch = !!(window.matchMedia && window.matchMedia('(hover: none) and (pointer: coarse)').matches);
+    this._touchStart = e => { const t = e.touches[0]; if (!t) return; this._fingerDown = true; move(t.clientX, t.clientY); ptr.x = ptr.px = t.clientX; ptr.y = ptr.py = t.clientY; };
+    this._touchEnd = () => { this._fingerDown = false; };
     window.addEventListener('pointermove', this._move);
-    window.addEventListener('touchstart', this._touch, { passive: true });
     window.addEventListener('touchmove', this._touch, { passive: true });
+    window.addEventListener('touchstart', this._touchStart, { passive: true });
     window.addEventListener('touchend', this._touchEnd, { passive: true });
     window.addEventListener('touchcancel', this._touchEnd, { passive: true });
 
     const TAU = Math.PI * 2;
     const clamp01 = v => v < 0 ? 0 : v > 1 ? 1 : v;
     const KR = 14;
-    const maskAt = (x, y) => this._isTouch ? 'radial-gradient(circle 1px at -500px -500px, #000 0, rgba(0,0,0,0) 1px)' : `radial-gradient(circle ${KR}px at ${x}px ${y}px, #000 0, #000 ${KR}px, rgba(0,0,0,0) ${KR + 0.6}px)`;
+    const maskAt = (x, y) => `radial-gradient(circle ${KR}px at ${x}px ${y}px, #000 0, #000 ${KR}px, rgba(0,0,0,0) ${KR + 0.6}px)`;
 
     const tick = () => {
      try {
@@ -323,7 +324,7 @@ class Component extends DCLogic {
       if (this.contactBaseRef.current && this.contactCloneInnerRef.current) this.contactCloneInnerRef.current.style.top = this.contactBaseRef.current.offsetTop + 'px';
 
       // eye/"View" cursor over images + cream cursor over brand-filled CTAs
-      if (cEl && (ptr.inited || this._isTouch)) {
+      if (cEl && ptr.inited) {
         let el = document.elementFromPoint(ptr.rx, ptr.ry), view = false, cream2 = !!this._forceCream;
         // any element painted in the brand red (text or fill) flips the cursor to cream
         const isRed = s => !!s && s.indexOf('167, 9, 9') !== -1;
@@ -341,14 +342,17 @@ class Component extends DCLogic {
           const root = el.getRootNode && el.getRootNode();
           el = el.parentElement || (root && root.host) || null;
         }
-        if (this._isTouch && !this._fingerDown) view = false;
-        if (this._isTouch && !this._touchInit) { this._touchInit = true; cEl.children[0].style.display = 'none'; cEl.children[1].style.display = 'none'; }
+        if (this._isTouch) {
+          if (!this._fingerDown) view = false;
+          if (!this._touchInit) { this._touchInit = true; cEl.children[0].style.visibility = 'hidden'; cEl.children[1].style.visibility = 'hidden'; cEl.children[2].style.transition = 'opacity 0.12s ease'; }
+        }
         if (view !== this._view) {
           this._view = view;
+          if (this._isTouch) cEl.children[2].style.transform = 'scale(1)';
           cEl.children[0].style.opacity = view ? '0' : '1';
           cEl.children[1].style.opacity = view ? '0' : '1';
           cEl.children[2].style.opacity = view ? '1' : '0';
-          cEl.children[2].style.transform = view ? 'scale(1)' : 'scale(0.2)';
+          if (!this._isTouch) cEl.children[2].style.transform = view ? 'scale(1)' : 'scale(0.2)';
         }
         if (cream2 !== this._cream) {
           this._cream = cream2;
@@ -377,9 +381,6 @@ class Component extends DCLogic {
     window.removeEventListener('resize', this._resize);
     window.removeEventListener('pointermove', this._move);
     window.removeEventListener('touchmove', this._touch);
-    window.removeEventListener('touchstart', this._touch);
-    window.removeEventListener('touchend', this._touchEnd);
-    window.removeEventListener('touchcancel', this._touchEnd);
     window.removeEventListener('scroll', this._onScroll);
   }
 

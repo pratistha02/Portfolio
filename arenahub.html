@@ -64,7 +64,9 @@ header.cs-open .cs-burger i:nth-child(3){top:20px;transform:rotate(-45deg)}
   figure:has(#ah-hero-home), figure:has(#ah-hero-compare){display:none!important}
   figure:has(#ah-hero-product){width:260px!important}
   section:not([aria-label="Product screens"]) figure[data-mfit]{flex:1 1 100%!important;width:100%!important;max-width:100%!important}
-  table th:first-child, table td:first-child{width:128px;min-width:128px;max-width:128px;white-space:normal;position:sticky;left:0;z-index:2;background:#F6F2EB;box-shadow:6px 0 10px -8px rgba(34,28,24,0.25)}
+  section:not([aria-label="Product screens"]) figure[data-mfit]:not(:has(#ah-d1-tabbar)){flex:0 0 240px!important;width:240px!important;max-width:240px!important;margin-left:auto!important;margin-right:auto!important}
+  section:not([aria-label="Product screens"]) div:has(> figure[data-mfit]){justify-content:center!important}
+  table th:first-child, table td:first-child{width:128px;min-width:128px;max-width:128px;white-space:normal;position:sticky;left:0;z-index:2;background:#F9F5EE;box-shadow:inset -1px 0 0 rgba(34,28,24,0.12)}
 }
 </style>
 <script src="./support.js"></script>
