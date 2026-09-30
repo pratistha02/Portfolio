@@ -532,11 +532,12 @@ class Component extends DCLogic {
       key: inv ? 'hero-inv' : 'hero', ref: ref,
       style: { position: inv ? 'absolute' : 'relative', ...(inv ? { top: 0, left: 0, right: 0, height: '100vh', zIndex: 130 } : { minHeight: '100vh' }), display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '0 24px', zIndex: inv ? 80 : 10, pointerEvents: 'none', ...(inv ? { maskImage: 'radial-gradient(circle 9px at -100px -100px, #000 0, transparent 10px)', WebkitMaskImage: 'radial-gradient(circle 9px at -100px -100px, #000 0, transparent 10px)' } : {}) }
     }, h('div', { style: { width: 'min(1000px, 92vw)', textAlign: 'center' } },
+      h('div', { style: { display: 'inline-block', verticalAlign: 'top', maxWidth: '100%' } },
       h('div', { style: { font: '600 11px/1 ' + mono, letterSpacing: '2.4px', textTransform: 'uppercase', color: inv ? cream : accent, marginBottom: '24px', userSelect: 'none' } }, ROLE),
       h('h1', { style: { font: '400 clamp(36px, 5.6vw, 82px) ' + forum, lineHeight: 1.16, color: inv ? 'transparent' : ink, margin: 0, userSelect: 'none', letterSpacing: '0.1px' } },
         h('span', { key: 'g' }, GREETING + ' '), inv ? avatarSpacer : avatar, h('span', { key: 'nm', style: { whiteSpace: 'nowrap' } }, ' ' + NAME)),
-      h('p', { style: { font: '400 clamp(18px, 2vw, 24px) ' + instSans, lineHeight: 1.45, color: inv ? 'transparent' : grey, margin: '24px auto 0', maxWidth: '560px', userSelect: 'none' } }, TAG)
-    ), h('div', {
+      h('p', { style: { font: '400 clamp(18px, 2vw, 24px) ' + instSans, lineHeight: 1.45, color: inv ? 'transparent' : grey, margin: '24px 0 0', width: 0, minWidth: '100%', userSelect: 'none' } }, TAG)
+    )), h('div', {
       style: { position: 'absolute', bottom: '38px', left: '50%', transform: 'translateX(-50%)', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px', userSelect: 'none' }
     }, h('span', { style: { font: '600 10px/1 ' + mono, letterSpacing: '2px', textTransform: 'uppercase', color: inv ? cream : accent + 'aa' } }, 'Scroll'),
        h('span', { style: { width: '1px', height: '34px', background: inv ? 'transparent' : 'linear-gradient(' + accent + 'aa, transparent)' } })));
@@ -589,11 +590,11 @@ class Component extends DCLogic {
     // ---------- about ----------
     const script = "'Caveat', cursive";
     const bioParas = [
-      "I studied engineering. I became a product designer. Here's how that happened.",
-      "In my first year of engineering, I tried graphic design on a whim and got hooked. I designed for tech clubs on campus, then joined an alumni's startup as a design intern. That's where I discovered UI/UX and realised design could do more than look good. It could make things work better for people. In my third year, I joined Fountane as a product designer, and I've been building products ever since.",
-      "Somewhere along the way, I realised I enjoy the messy part of design just as much as the polished final screen. The questions, the iterations, the tiny details, and the occasional “wait, what if we tried this?” are all part of what makes design fun for me. My engineering background still shapes how I approach problems, helping me break things down, question assumptions, and design within real constraints.",
-      "Today, I’m a product designer with 3+ years of experience, including 2+ years designing SaaS products end to end. I’ve worked across web and mobile, and enjoy being involved from figuring out the problem and shaping the experience to refining the details that make a product feel right. When I’m not designing, I’m usually learning something new, exploring an idea, or getting unnecessarily excited about a really good interface.",
-      "I’m currently open to full-time, freelance, and contract opportunities. If there’s a good problem to solve or an interesting product to build, I’d love to hear about it."
+      "I studied engineering. I became a product designer. Here’s how that happened.",
+      "In my first year of engineering, I tried graphic design on a whim and got hooked. I designed for tech clubs, then joined an alumni’s startup as a design intern. That’s where I discovered UI/UX and realised design could do more than look good. It could make things work better for people. In my third year, I joined Fountane as a product designer, and I’ve been building products ever since.",
+      "Somewhere along the way, I realised I enjoy the messy part of design just as much as the polished final screen. The questions, iterations, and tiny details are what make design fun for me. My engineering background still shapes how I break down problems, question assumptions, and design within real constraints.",
+      "Today, I have 3+ years of experience across product and visual design, including 2+ years designing SaaS products end to end. I enjoy understanding users, untangling messy problems, and turning them into simple, thoughtful experiences.",
+      "I’m currently open to full-time, freelance, and contract opportunities. If there’s a good problem to solve or an interesting product to build, I’d love to hear from you."
     ];
     const nonParas = [
       "When I'm not designing, you'll probably find me watching anime. I love the blend of storytelling, world-building, and visual creativity that goes into every episode. It constantly inspires me to think about how experiences can evoke emotions and leave a lasting impression.",
